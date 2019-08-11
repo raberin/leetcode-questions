@@ -17,6 +17,7 @@ Output: 2
  * @param {number[]} nums
  * @return {number}
  */
+//Using Sort
 var majorityElement = function(nums) {
   let sorted = nums.sort((a, b) => a - b);
   let midIndex = Math.floor(sorted.length / 2);
@@ -26,5 +27,15 @@ var majorityElement = function(nums) {
     return sorted[midIndex] === sorted[midIndex - 1]
       ? sorted[midIndex - 1]
       : sorted[midIndex + 1];
+  }
+};
+
+//Non Sort - Objects
+var majorityElement = function(nums) {
+  var obj = {};
+
+  for (var i = 0; i < nums.length; i++) {
+    obj[nums[i]] = obj[nums[i]] + 1 || 1;
+    if (obj[nums[i]] > nums.length / 2) return nums[i];
   }
 };
