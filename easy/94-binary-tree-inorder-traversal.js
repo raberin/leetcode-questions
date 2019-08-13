@@ -24,6 +24,13 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
  * @param {TreeNode} root
  * @return {number[]}
  */
+/*
+pre-order: visit the parent, then all the left children, and then all the right children.
+
+in-order: visit the left child, then the parent, and then the right child. This approach is useful for BSTs as it traverses the nodes in sorted order.
+
+post-order: visit the left child, then the right child, and then the parent.
+*/
 var inorderTraversal = function(root) {
   //Base case if root is not true, return empty arr
   if (!root) {

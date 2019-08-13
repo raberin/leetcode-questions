@@ -33,6 +33,7 @@ var countPrimes = function(n) {
         // mark the prime's multiples as nonprime
         isPrime[i * j] = false;
         console.log(`i = ${i}`, `j = ${j}`, `i * j = ${i * j}`);
+        console.log(isPrime);
       }
     }
   }

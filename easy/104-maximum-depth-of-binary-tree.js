@@ -36,7 +36,7 @@ var maxDepth = function(root) {
     return 0;
   }
   //Recursively go down left and right binary tree
-  //Add plus 1 to include node
+  //Add plus 1 to include node/root
   let leftRootVal = maxDepth(root.left) + 1;
   let rightRootVal = maxDepth(root.right) + 1;
 

@@ -28,7 +28,7 @@ var sortedArrayToBST = function(nums) {
   // subtrees are BSTs as well
   //Recursively create new nodes adding midpoint value at every node
   root.left = sortedArrayToBST(nums.slice(0, mid));
-  root.right = sortedArrayToBST(nums.slice(mid + 1));
+  root.right = sortedArrayToBST(nums.slice(mid + 1)); //Everything after mid
 
   return root;
 };
