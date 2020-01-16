@@ -1,0 +1,66 @@
+/* Invert a binary tree.
+
+Example:
+
+Input:
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+Output:
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+Trivia:
+This problem was inspired by this original tweet by Max Howell:
+
+Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so f*** off.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+
+//Recursive Answeer
+var invertTree = function(root) {
+  //Base Case
+  if (root === null) {
+    return null;
+  }
+  //Recursion
+  //Save tmp to left part of tree;
+  var tmp = root.left;
+  //Change the values of root.left to root.right recursively
+  root.left = invertTree(root.right);
+  //Do the opposite for right but use tmp since its been overwritten
+  root.right = invertTree(tmp);
+
+  return root;
+};
+
+//Recursive Answer #2
+const invertTree = root => {
+  //Base case
+  if (!root) return null;
+  //left and right of tree is turned into an arr, and recurisvely reversed
+  [root.left, root.right] = [invertTree(root.right), invertTree(root.left)];
+  return root;
+};
+
+//Iterative Answer
+// const invertTree = root => {
+
+// }
