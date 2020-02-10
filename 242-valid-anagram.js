@@ -14,13 +14,15 @@ You may assume the string contains only lowercase alphabets.
 Follow up:
 What if the inputs contain unicode characters? How would you adapt your solution to such case?*/
 
-//Sorted Approach O(n^2) - speed
+//Sorted Approach O(nlogn) - speed
 var isAnagram = function(s, t) {
   let sorted1 = s.split("").sort();
   let sorted2 = t.split("").sort();
+  // Checks which string is longer to loop over for comparison
   let longerString = s.length < t.length ? t.length : s.length;
 
   for (let i = 0; i < longerString; i++) {
+    // At each iteration check if the letters are same
     if (sorted1[i] !== sorted2[i]) {
       return false;
     }
@@ -28,7 +30,7 @@ var isAnagram = function(s, t) {
   return true;
 };
 
-//Sorted Approach O(n^2) - speed
+//Sorted Approach O(nlogn) - speed
 var isAnagram = function(s, t) {
   let sorted1 = s
     .split("")
@@ -62,3 +64,14 @@ let isAnagram = (s, t) => {
   }
   return true;
 };
+
+// Using a set
+let isAnagram = (s, t) => {
+  // Create new Set
+  let set = new Set()
+    // Loop through s and add letter into set
+    for(let letter in s){
+      set.add(letter)
+    }
+    
+}

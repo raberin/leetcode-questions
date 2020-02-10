@@ -30,7 +30,7 @@ var majorityElement = function(nums) {
   }
 };
 
-//Non Sort - Objects
+//Non Sort - Objects/Caching
 var majorityElement = function(nums) {
   var obj = {};
 
@@ -39,3 +39,19 @@ var majorityElement = function(nums) {
     if (obj[nums[i]] > nums.length / 2) return nums[i];
   }
 };
+
+
+// Non Sort - Cache/Map
+const majorityElement = nums => {
+  let map = {}
+  for(let num of nums){
+    // Save amount in map
+    if(!map[num]){
+      map[num] = 1
+    } else {
+      map[num]++
+      // Checks if amount is greater than length/2
+      if(map[num] > nums.length / 2) return num
+    }
+  }
+}

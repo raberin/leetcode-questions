@@ -41,3 +41,18 @@ var twoSum = function(nums, target) {
     console.log(obj);
   }
 };
+
+// First Pass #2 - O(n)
+var twoSum = function(nums, target) {
+  let map = {};
+  //     Loop through arr
+  for (let i = 0; i < nums.length; i++) {
+    //         subtract target - current num
+    let result = target - nums[i];
+    //         Check if result is a key in map
+    if (result in map) {
+      return [map[result], i];
+    }
+    map[nums[i]] = i;
+  }
+};
