@@ -18,7 +18,7 @@ Output: true
 */
 
 //Sort method O(nlgn) - time
-var containsDuplicate = function(nums) {
+var containsDuplicate = function (nums) {
   let sorted = nums.sort((a, b) => a - b);
   for (let i = 0; i < sorted.length; i++) {
     if (sorted[i] === sorted[i + 1]) return true;
@@ -27,7 +27,7 @@ var containsDuplicate = function(nums) {
 };
 
 //Hash Map Method O(n) - time
-var containsDuplicate = function(nums) {
+var containsDuplicate = function (nums) {
   let obj = {};
   for (let ele of nums) {
     if (obj[ele]) {
@@ -40,7 +40,7 @@ var containsDuplicate = function(nums) {
 };
 
 //Set Method O(n) - time
-var containsDuplicate = function(nums) {
+var containsDuplicate = function (nums) {
   let set1 = new Set();
   for (let num of nums) {
     if (set1.has(num)) {
@@ -50,4 +50,12 @@ var containsDuplicate = function(nums) {
     }
   }
   return false;
+};
+
+//Set Method O(n) - time
+var containsDuplicate = function (nums) {
+  //Convert the arr into a set, thus removing dupes
+  const myset = new Set(nums);
+  //Check if the lengths are the same, if yes there's no dupes, if so dupes
+  return nums.length === myset.size ? false : true;
 };

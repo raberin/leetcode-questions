@@ -14,7 +14,7 @@ Example 2:
 Input: [4,1,2,1,2]
 Output: 4
 */
-// O(n)
+// O(n) - hashmap
 var singleNumber = function(nums) {
   let cache = {};
   for (let i = 0; i < nums.length; i++) {
@@ -28,5 +28,23 @@ var singleNumber = function(nums) {
     if (cache[key] === 1) {
       return key;
     }
+  }
+};
+
+//O(n) - set
+var singleNumber = function(nums) {
+  if (nums.length < 2) {
+    return nums[0];
+  }
+  let seen = new Set();
+  for (let num in nums) {
+    if (num in seen) {
+      seen.delete(num);
+    } else {
+      seen.add(num);
+    }
+  }
+  for (let num of seen) {
+    return num;
   }
 };

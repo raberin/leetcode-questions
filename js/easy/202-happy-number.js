@@ -34,3 +34,21 @@ function sumOfSquares(numString) {
       return sum + Math.pow(num, 2);
     }, 0);
 }
+
+// Very slow O(n^2) 164ms not even in the leetcode avg range
+var isHappy = function(n) {
+  let sum = n
+  let seen = new Set()
+  while(sum !== 1){
+      sum = sum.toString().split('').reduce((total, num) => total + Math.pow(Number(num),2))
+      if(seen.has(sum)){
+          return false
+      } else {
+          seen.add(sum)
+      }
+      console.log(seen)
+      console.log(sum)
+  }
+  return true
+};
+console.log(isHappy(32))
