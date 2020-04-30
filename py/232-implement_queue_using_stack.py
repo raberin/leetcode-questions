@@ -4,56 +4,58 @@ class MyQueue:
         """
         Initialize your data structure here.
         """
-        self.storage = []
-        self.size = 0
-        self.top = None
+        self.stack_one = []
+        self.stack_two = []
 
     def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
-        # Check if its empty
-        # If so... set pushed object as top
-        if self.empty():
-            self.top = x
-        self.storage.append(x)
-        self.size += 1
+        # Append to stack_one
+        self.stack_one.append(x)
+
+    def transfer(self):
+        # Transfer all back into first stack
+        while self.stack_two:
+            self.stack_one.append(self.stack_two.pop())
 
     def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
-        new_storage = []
         popped = None
-        # Loop backwards
-        for i in range(self.size - 1, -1, -1):
-            print(i)
-            # If at final item, save it to be returned
-            if i == 0:
-                popped = self.storage.pop()
-            # Item after popped item is the top one
-            elif i == 1:
-                self.top = self.storage.pop()
-            # Push every popped object to new_storage
-            else:
-                new_storage.append(self.storage.pop())
-        # Decrease size by 1
-        self.size -= 1
-        # Set self.storage to new storage
-        self.storage = new_storage
+        # While stack_one has contents...
+        while self.stack_one:
+            # Push all values by popping from stack_one -> stack_two
+            self.stack_two.append(self.stack_one.pop())
+        # Store popped value to be dequeued
+        popped = self.stack_two.pop()
+        # Transfer all contents back to stack_one
+        self.transfer()
+        # Return popped value
         return popped
 
     def peek(self) -> int:
         """
         Get the front element.
         """
-        return self.top
+        # Transfer to stack_two
+        while self.stack_one:
+            # Push all values by popping from stack_one -> stack_two
+            self.stack_two.append(self.stack_one.pop())
+        # Save "top" of stack_two which is the "front" element
+        # The top of the stack is the -1 index of the list LAST ELEMENT
+        front = self.stack_two[-1]
+        # Transfer back to stack_one
+        self.transfer()
+        # Return "front" element
+        return front
 
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
-        return self.storage == 0
+        return len(self.stack_one) < 1 and len(self.stack_two) < 1
 
 
 # Your MyQueue object will be instantiated and called as such:

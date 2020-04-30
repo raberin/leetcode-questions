@@ -57,5 +57,5 @@ var containsDuplicate = function (nums) {
   //Convert the arr into a set, thus removing dupes
   const myset = new Set(nums);
   //Check if the lengths are the same, if yes there's no dupes, if so dupes
-  return nums.length === myset.size ? false : true;
+  return nums.length !== myset.size;
 };
