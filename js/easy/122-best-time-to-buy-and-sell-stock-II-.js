@@ -26,7 +26,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 
 // Solution 1
-var maxProfit = function(prices) {
+var maxProfit = function (prices) {
   //Set initial value
   let current = prices[0];
   let result = 0;
@@ -44,11 +44,37 @@ var maxProfit = function(prices) {
 };
 
 //Greedy Appoach -- Function JS
-var maxProfit = function(prices) {
+var maxProfit = function (prices) {
   let profit = 0;
   for (let i = 0; i < prices.length - 1; i++) {
     const possibleProfit = prices[i + 1] - prices[i];
     profit = Math.max(profit + possibleProfit, profit);
   }
   return profit;
+};
+
+// Sliding Window - 2 Pointer Technique
+var maxProfit = (prices) => {
+  let buyIndex = 0;
+  let sellIndex = 1;
+  // Initialize maxProfit to 0 as a default case
+  let maxProfit = 0;
+
+  while (sellIndex < prices.length) {
+    // If buy value is less than sell value
+    if (prices[buyIndex] < prices[sellIndex]) {
+      // Calculate profit
+      const profit = prices[sellIndex] - prices[buyIndex];
+
+      //Set maxProfit
+      maxProfit = Math.max(maxProfit, profit);
+    } else {
+      //If the buy value is greater than sell value set buyIndex to sellIndex since we want to make
+      //sure our buy value is the lowest available
+      buyIndex = sellIndex;
+    }
+    sellIndex++;
+  }
+
+  return maxProfit;
 };
